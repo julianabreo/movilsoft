@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:productos_app/models/login.dart';
+import 'package:movisoft_app/models/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:productos_app/main.dart' as mb;
+import 'package:movisoft_app/main.dart' as mb;
 import 'package:http/http.dart' as http;
 
 class AuthService extends ChangeNotifier {

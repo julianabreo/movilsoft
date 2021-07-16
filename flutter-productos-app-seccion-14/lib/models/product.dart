@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:productos_app/models/models.dart';
+import 'package:movisoft_app/models/models.dart';
 
 class Product {
     Product({

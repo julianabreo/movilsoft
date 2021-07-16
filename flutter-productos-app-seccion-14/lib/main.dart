@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:background_location/background_location.dart';
-import 'package:productos_app/screens/screens.dart';
-import 'package:productos_app/services/services.dart';
+import 'package:movisoft_app/screens/screens.dart';
+import 'package:movisoft_app/services/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Productos App',
+      title: 'Movilidad App',
       initialRoute: 'login',
       routes: {
         'checking': (_) => CheckAuthScreen(),

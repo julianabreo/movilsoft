@@ -1,1 +1,1 @@
-export 'package:productos_app/models/product.dart';
+export 'package:movisoft_app/models/product.dart';

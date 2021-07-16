@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.productos_app">
+    package="com.example.movisoft_app">
    <uses-permission android:name="android.permission.INTERNET"/>
    <uses-permission android:name="android.permission.CAMERA" />
    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -7,7 +7,7 @@
    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
    <application
-        android:label="productos_app"
+        android:label="movisoft_app"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

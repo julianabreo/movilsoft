@@ -1,4 +1,4 @@
-package com.example.productos_app
+package com.example.movisoft_app
 
 import io.flutter.embedding.android.FlutterActivity
 
