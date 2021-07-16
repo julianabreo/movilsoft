@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:productos_app/models/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import 'package:productos_app/main.dart' as mb;
 import 'package:http/http.dart' as http;
 
 class AuthService extends ChangeNotifier {
@@ -22,6 +22,10 @@ class AuthService extends ChangeNotifier {
 
     if (dataresp.token != null) {
       await storage.write(key: 'token', value: decodedResp['token']);
+      await storage.write(key: 'iduser', value: decodedResp['idusuario']);
+      await storage.write(key: 'user', value: email);
+      //Se inicia el servicio
+      await mb.MyApp.startServiceGps();
       return null;
     } else {
       return dataresp.nomerror;
@@ -30,6 +34,9 @@ class AuthService extends ChangeNotifier {
 
   Future logout() async {
     await storage.delete(key: 'token');
+    await storage.delete(key: 'user');
+    await storage.delete(key: 'iduser');
+    await mb.MyApp.stopServiceGps();
     return;
   }
 
