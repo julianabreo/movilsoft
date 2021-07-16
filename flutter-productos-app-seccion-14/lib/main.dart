@@ -7,8 +7,20 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppState());
 final storage = new FlutterSecureStorage();
+
+class AppState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthService()),
+      ],
+      child: MyApp(),
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -42,8 +54,9 @@ class MyApp extends StatelessWidget {
       sendLocation(
           latitude,
           longitude,
-          DateTime.fromMillisecondsSinceEpoch(location.time!.toInt())
-              .toString());
+          DateTime.fromMillisecondsSinceEpoch(location.time!.toInt(),
+                  isUtc: true)
+              .toIso8601String());
       //accuracy = location.accuracy.toString();
       //altitude = location.altitude.toString();
       //bearing = location.bearing.toString();
@@ -52,30 +65,34 @@ class MyApp extends StatelessWidget {
     });
   }
 
-  static Future<String> readToken(String nameKey) async {
+  static Future<String> readTokenM(String nameKey) async {
     return await storage.read(key: nameKey) ?? '';
   }
 
   static sendLocation(String lat, String log, String date) async {
     final url =
         Uri.parse('http://movisoft.ceintemovil.com/wsceinte/api/location');
-    String idusuario = await readToken('iduser');
-    String token = await readToken('token');
-    final resp = await http.post(url,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer $token',
-        },
-        body: jsonEncode(
-          <String, String>{
-            'idgrupohorario': '1',
-            'idusuario': idusuario,
-            'loclat': lat,
-            'loclng': log,
-            'usuariocrea': idusuario,
-            'fecharegistro': date
+    String idusuario = await readTokenM('iduser');
+    String token = await readTokenM('token');
+    try {
+      final resp = await http.post(url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token',
           },
-        ));
+          body: jsonEncode(
+            <String, String>{
+              'idgrupohorario': '1',
+              'idusuario': idusuario,
+              'loclat': lat,
+              'loclng': log,
+              'usuariocrea': idusuario,
+              'fecharegistro': date
+            },
+          ));
+    } catch (ex) {
+      print(ex.toString());
+    }
   }
 
   static stopServiceGps() async {

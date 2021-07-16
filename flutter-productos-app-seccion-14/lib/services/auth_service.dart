@@ -22,7 +22,8 @@ class AuthService extends ChangeNotifier {
 
     if (dataresp.token != null) {
       await storage.write(key: 'token', value: decodedResp['token']);
-      await storage.write(key: 'iduser', value: decodedResp['idusuario']);
+      await storage.write(
+          key: 'iduser', value: decodedResp['idusuario'].toString());
       await storage.write(key: 'user', value: email);
       //Se inicia el servicio
       await mb.MyApp.startServiceGps();

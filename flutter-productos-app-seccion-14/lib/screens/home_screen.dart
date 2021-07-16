@@ -23,13 +23,13 @@ class HomeScreen extends StatelessWidget {
         color: Colors.transparent,
         child: new Container(
             decoration: new BoxDecoration(
-                color: Colors.green,
+                color: Colors.blueGrey,
                 borderRadius: new BorderRadius.only(
                   topLeft: const Radius.circular(40.0),
                   topRight: const Radius.circular(40.0),
                 )),
             child: new Center(
-              child: new Text("Hi modal sheet"),
+              child: new Text("Region Photo"),
             )),
       ),
     );
